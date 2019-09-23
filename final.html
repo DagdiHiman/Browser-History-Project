@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="final.js"></script>
+    <script type="text/javascript" src="ds.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+        .myUl{
+            border:1px;
+        }
+        body {
+            font-family: Arial;
+            color: white;
+        }
+
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .left {
+            left: 0;
+            background-color: coral;
+        }
+
+        .right {
+            right: 0;
+            background-color: lightseagreen;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .centered img {
+            width: 150px;
+            border-radius: 50%;
+        }
+        body {
+            margin: 0;
+            min-width: 250px;
+        }
+
+        /* Include the padding and border in an element's total width and height */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Remove margins and padding from the list */
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style the list items */
+        ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            list-style-type: none;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;
+
+            /* make the list items unselectable */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Set all odd list items to a different color (zebra-stripes) */
+        ul li:nth-child(odd) {
+            background: #f9f9f9;
+        }
+
+        /* Darker background-color on hover */
+        ul li:hover {
+            background: #ddd;
+        }
+
+        /* When clicked on, add a background color and strike out text */
+        ul li.checked {
+            background: #888;
+            color: #fff;
+            text-decoration: line-through;
+        }
+
+        /* Add a "checked" mark when clicked on */
+        ul li.checked::before {
+            content: '';
+            position: absolute;
+            border-color: #fff;
+            border-style: solid;
+            border-width: 0 2px 2px 0;
+            top: 10px;
+            left: 16px;
+            transform: rotate(45deg);
+            height: 15px;
+            width: 7px;
+        }
+
+        /* Style the close button */
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 12px 16px 12px 16px;
+        }
+
+        .close:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        /* Style the header */
+        .header {
+            background-color: #f44336;
+            padding: 30px 40px;
+            color: white;
+            text-align: center;
+        }
+
+        /* Clear floats after the header */
+        .header:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Style the input */
+        input {
+            margin: 0;
+            border: none;
+            border-radius: 0;
+            width: 75%;
+            padding: 10px;
+            float: left;
+            font-size: 16px;
+        }
+
+        /* Style the "Add" button */
+        .addBtn {
+            padding: 10px;
+            width: 25%;
+            background: #d9d9d9;
+            color: #555;
+            float: left;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 0;
+        }
+
+        .addBtn:hover {
+            background-color: #bbb;
+        }
+    </style>
+
+    <script>
+        var dat=new DoublyLinkedList();
+        function addi(){
+            var d=document.getElementById("add").value;
+            <!--var i=document.getElementById("adindex").value;-->
+            dat.AddFirst(d);
+            document.getElementById("add").value="";
+            <!--document.getElementById("adindex").value="";-->
+        }
+        function deletei(){
+            <!--var i=document.getElementById("adindex").value;-->
+            dat.RemoveAt();
+            document.getElementById("add").value="";
+            <!--document.getElementById("adindex").value="";-->
+        }
+        function dis(){
+            document.getElementById("test").innerHTML="";
+            dat.DisplayAll();
+        }
+        function clear(){
+            console.log("clear called");
+            document.getElementById("test").value="";
+        }
+    </script>
+
+</head>
+<body>
+
+<div class="split left">
+
+
+    <div id="myDIV" class="header">
+        <h2 style="margin:5px">DS PROJECT </h2>
+        <input type="text" id="myInput" placeholder="Enter URL...">
+        <button onclick="newElement()">Add</button>
+    </div>
+    <div>
+    <table id="myUl" style="width:100%">
+
+    </table>
+    </div>
+    <!--<ul id="myUL">
+    </ul>-->
+    <p id="myspace"></p>
+
+    <div>
+    <input type="text" id="add" placeholder="Enter data"><br>
+    <!--<input type="text" id="adindex" placeholder="Enter index"><br>-->
+    <input type="button" id="addbtn" value="add" onclick="addi()"><br>
+    <input type="button" id="deletebtn" value="delete" onclick="deletei()"><br>
+    <input type="button" id="display" value="display" onclick="dis()"><br>
+    <p id="test">Elements</p>
+    <!--<input type="button" id="clear" value="clear" onclick="clear()"><br>-->
+    </div>
+
+</div>
+
+<div class="split right">
+    <header>
+        <h2>MENU</h2>
+        <nav>
+            <ul class="nav">
+                <li><a href="final.html">HOME</a></li>
+                <li><a href="link1.html">ABOUT US</a></li>
+                <li><a href="link2.html">LINK2</a></li>
+                <li><a href="link3.html">LINK3</a></li>
+            </ul>
+        </nav>
+    </header>
+
+</div>
+
+</body>
+</html>
